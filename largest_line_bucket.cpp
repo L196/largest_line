@@ -106,7 +106,9 @@ std::stack<std::pair<int, double>> line_bucket(std::vector<std::pair<int, double
     
     std::stack<std::pair<int, double>> points;
     std::pair<double, double> mean_of_bucket {0, 0};
+    //int j = 0, k = 0;
     double triangle_area = 0, area = 0, a_side = 0, b_side = 0, c_side, p = 0;
+    double a_line = 0, b_line = 0;
 
     points.push({values.front().first, values.front().second});
     //std::cout << points.top().first << ' ' << points.top().second << std::endl;
@@ -121,8 +123,10 @@ std::stack<std::pair<int, double>> line_bucket(std::vector<std::pair<int, double
         {
             //if(j >= values_size - 1)
             //    break;
-
-            side_length_current = std::sqrt(std::pow(values[j].first - points.top().first, 2) + std::pow(values[j].second - points.top().second, 2));
+            a_line = values[j].first - points.top().first;
+            b_line = values[j].second - points.top().second;
+            side_length_current = std::sqrt(a_line * a_line + b_line * b_line);
+            //side_length_current = std::sqrt(std::pow(values[j].first - points.top().first, 2) + std::pow(values[j].second - points.top().second, 2));
             
             if(side_length_current > side_length)
             {
